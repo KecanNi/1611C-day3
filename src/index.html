@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/swiper.min.css">
+    <script src="./js/flexiable.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <header class="header">
+            <img src="./img/header.png" alt="">
+        </header>
+        <mian class="main">
+            <!-- swiepr -->
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img src="./img/banner1.png" alt="">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="./img/banner1.png" alt="">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="./img/banner1.png" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="main-list">
+                <!-- 渲染 -->
+            </div>
+        </mian>
+        <footer class="footer">
+            <dl>
+                <dt>
+                    <img src="./img/IMG_0911_r2_c2.png" alt="">
+                </dt>
+                <dd>咨询</dd>
+            </dl>
+            <dl>
+                <dt>
+                    <img src="./img/IMG_0911_r2_c2.png" alt="">
+                </dt>
+                <dd>盟友</dd>
+            </dl>
+            <dl>
+                <dt>
+                    <img src="./img/IMG_0911_r2_c2.png" alt="">
+                </dt>
+                <dd>电竞</dd>
+            </dl>
+            <dl>
+                <dt>
+                    <img src="./img/IMG_0911_r2_c2.png" alt="">
+                </dt>
+                <dd>商城</dd>
+            </dl>
+            <dl>
+                <dt>
+                    <img src="./img/IMG_0911_r2_c2.png" alt="">
+                </dt>
+                <dd>战绩</dd>
+            </dl>
+            <!-- <img src="./img/footer.png" alt=""> -->
+        </footer>
+    </div>
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/swiper.min.js"></script>
+    <script>
+        var swiper = new Swiper('.swiper-container', {
+            loop: true,
+        })
+
+        $.ajax({
+            url: './data/data.json',
+            type: 'get',
+            success: function (data) {
+                var data = data;
+                render(data)
+            }
+        })
+
+        function render(data) {
+            console.log(data)
+            data.forEach(function (i, item) {
+                html =
+                    ` <div class="main-item">
+                    <div class="item-left">
+                        <h3>${i.txt}</h3>
+                        <p><span>${i.name}</span><span>${i.ren}阅</span></p>
+                    </div>
+                    <div class="item-img">
+                        <img src="./img/${i.img}" alt="">
+                    </div>
+                </div>`;
+
+                $('.main-list').append(html)
+            })
+        }
+    </script>
+</body>
+
+</html>
